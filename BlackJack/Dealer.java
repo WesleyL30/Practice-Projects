@@ -2,10 +2,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Dealer {
-	public static void clearScreen() {
-    	System.out.print("\033[H\033[2J");
-    	System.out.flush();
-  	}
+	// public static void clearScreen() {
+    // 	System.out.print("\033[H\033[2J");
+    // 	System.out.flush();
+  	// }
 	public static void main(String[] args) {
 		int wins = 0;
 		int losses = 0;
@@ -19,7 +19,7 @@ public class Dealer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		clearScreen();
+		// clearScreen();
 		System.out.println("Welcome to BlackJack: ");
 		Scanner scan = new Scanner(System.in);
 		boolean playing = true;
@@ -41,7 +41,7 @@ public class Dealer {
 					System.out.println("BlackJack!");
 					playerPlaying = false;
 				} else {
-					System.out.print("\n\nWould you like to hit[h] or fold[f]: ");
+					System.out.print("\n\nWould you like to hit[h] or stay[s]: ");
 					String input = scan.next();
 					if (input.toLowerCase().equals("h")) {
 						firstDeck.hit(player);
@@ -56,7 +56,7 @@ public class Dealer {
 							System.out.println("\n\nBlackJack!");
 							playerPlaying = false;
 						}
-					} else if (input.toLowerCase().equals("f")) {
+					} else if (input.toLowerCase().equals("s")) {
 						System.out.println("\n\nCurrent Score: " + player.calulateHand());
 						System.out.println(" ");
 						System.out.println("Your hand is: ");
