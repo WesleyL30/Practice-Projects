@@ -47,24 +47,36 @@ public class Deck {
 	 * @return
 	 */
 	public String hit(Hand draw) {
-		if (deal.isEmpty()) {
-			shuffle();
-		}
 		Random rand = new Random();
-		int card = rand.nextInt(deal.size() - 1);
+		int card = 0;
+		if (deal.size() == 1) {
+			card = 0;
+		} else {
+			card = rand.nextInt(deal.size() - 1);
+		}
+		
 		String dealtCard = deal.get(card);
 		draw.addToHand(dealtCard);
 		deal.remove(card);
-		used.add(dealtCard);
 
+		if (deal.size() == 0) {
+			shuffle();
+		}
 		return dealtCard;
+	}
+
+	public void discard(String str) {
+		used.add(str);
 	}
 
 	/**
 	 * Puts the contents of the discard ArrayList into the deal ArrayList.
 	 */
 	public void shuffle() {
-		deal = (ArrayList<String>)used.clone();
+		// deal.clear();
+		// deal.trimToSize();
+		deal = (ArrayList<String>) used.clone();
+		System.out.println("Shuffling deck...");
 		used.clear();
 	}
 }

@@ -63,7 +63,7 @@ public class Dealer {
 						player.getHand(0);
 						playerPlaying = false;
 					} else {
-						System.out.println("Please enter a valid input");
+						System.out.println("Please enter a valid input [h/s]");
 					}
 				}
 			}
@@ -112,17 +112,24 @@ public class Dealer {
 			System.out.println("\n\nCurrent record: \nWins: " + wins + "\nTies: " + ties + "\nLosses: " + losses);
 			System.out.println("Dealer busted: " + dealerBusted + "\nPlayer busted: " + playerBusted);
 			System.out.print("\nWould you like to keep playing? [y/n]: ");
-			String keepPlaying = scan.next();
-			if (keepPlaying.toLowerCase().equals("y")) {
-				// clearScreen();
-				System.out.println("Welcome to blackjack: ");
-				player.emptyHand();
-				dealer.emptyHand();
-				playerBusted = false;
-				dealerBusted = false;
-			} else if (keepPlaying.toLowerCase().equals("n")) {
-				System.out.println("Thanks for using this program!");
-				playing = false;
+			boolean stopPlaying = true;
+			while(stopPlaying) {
+				String keepPlaying = scan.next();
+				if (keepPlaying.toLowerCase().equals("y")) {
+					// clearScreen();
+					System.out.println("Welcome to blackjack: ");
+					player.emptyHand();
+					dealer.emptyHand();
+					playerBusted = false;
+					dealerBusted = false;
+					stopPlaying = false;
+				} else if (keepPlaying.toLowerCase().equals("n")) {
+					System.out.println("Thanks for using this program!");
+					stopPlaying = false;
+					playing = false;
+				} else {
+					System.out.println("Please enter a valid input [y/n]");
+				}
 			}
 		}
 		scan.close();

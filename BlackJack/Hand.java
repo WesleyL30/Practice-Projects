@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 public class Hand {
 	private ArrayList<String> currentHand;
+	private Deck deck;
 
 	public Hand() {
 		currentHand = new ArrayList<String>();
+		deck = new Deck();
 	}
 
 	public void addToHand(String card) {
@@ -16,6 +18,9 @@ public class Hand {
 	}
 
 	public void emptyHand() {
+		for (int i = 0; i <= currentHand.size() - 1; i++) {
+			deck.discard(currentHand.get(i));
+		}
 		currentHand.clear();
 	}
 
